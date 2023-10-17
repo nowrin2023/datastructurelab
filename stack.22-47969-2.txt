@@ -1,0 +1,85 @@
+#include <iostream>
+using namespace std;
+
+int stack[100], n = 100, top = -1;
+
+bool isEmpty() {
+    return top == -1;
+}
+
+void push(int val) {
+    if (top >= n - 1)
+        cout << "Stack Overflow" << endl;
+    else {
+        top++;
+        stack[top] = val;
+    }
+}
+
+void pop() {
+    if (top <= -1)
+        cout << "Stack Underflow" << endl;
+    else {
+        cout << "The popped element is " << stack[top] << endl;
+        top--;
+    }
+}
+
+int showTop() {
+    if (top >= 0) {
+        return stack[top];
+    } else {
+        cout << "Stack is empty" << endl;
+        return -1;
+    }
+}
+
+void display() {
+    if (top >= 0) {
+        cout << "Stack elements are:";
+        for (int i = top; i >= 0; i--)
+            cout << stack[i] << " ";
+        cout << endl;
+    } else
+        cout << "Stack is empty" << endl;
+}
+
+int main() {
+    int ch, val;
+    do {
+        cout << "1) Check if the stack is empty" << endl;
+        cout << "2) Push in stack" << endl;
+        cout << "3) Pop from stack" << endl;
+        cout << "4) Show the top element" << endl;
+        cout << "5) Display stack" << endl;
+        cout << "6) Exit" << endl;
+        cout << "Enter choice: " << endl;
+        cin >> ch;
+
+        if (ch == 1) {
+            if (isEmpty()) {
+                cout << "Stack is empty" << endl;
+            } else {
+                cout << "Stack is not empty" << endl;
+            }
+        } else if (ch == 2) {
+            cout << "Enter value to be pushed:" << endl;
+            cin >> val;
+            push(val);
+        } else if (ch == 3) {
+            pop();
+        } else if (ch == 4) {
+            int topValue = showTop();
+            if (topValue != -1) {
+                cout << "Top element: " << topValue << endl;
+            }
+        } else if (ch == 5) {
+            display();
+        } else if (ch == 6) {
+            cout << "Exit" << endl;
+        } else {
+            cout << "Invalid Choice" << endl;
+        }
+    } while (ch != 6);
+    return 0;
+}
